@@ -1,0 +1,9 @@
+name: "TIM Performer"
+performerByURL:
+  - action: script
+    url:
+      - treasureislandmedia.com/men
+    script:
+      - python
+      - ./tim_script.py
+# Last Updated April 12, 2024

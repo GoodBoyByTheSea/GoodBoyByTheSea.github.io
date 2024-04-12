@@ -1,0 +1,12 @@
+name: "Deviant Otter"
+sceneByFragment:
+    action: script
+    script:
+      - python
+      - ./script.py
+sceneByName:
+    action: script
+    script:
+      - python
+      - ./script.py
+# Last Updated April 12, 2024

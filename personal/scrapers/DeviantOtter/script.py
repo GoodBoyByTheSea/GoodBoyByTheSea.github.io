@@ -6,11 +6,19 @@ import sys
 import logging
 import re
 
-# PATH = r'C:\Personal\Porn\Stash\scrapers\community\DeviantOtter'
 PATH = os.path.dirname(os.path.realpath(__file__))
 log_file = os.path.join(PATH, 'log.log')
 logger = logging.getLogger(__name__)
 logging.basicConfig(filename=log_file, encoding='utf-8', level=logging.DEBUG)
+
+
+def read_json_args():
+    input = sys.stdin.read()
+    return json.loads(input)
+
+
+def debug_print(t):
+    sys.stderr.write(t + "\n")
 
 
 class OtterScraper:
@@ -107,23 +115,14 @@ class OtterScraper:
         return posts
 
 
-def readJSONInput():
-    input = sys.stdin.read()
-    return json.loads(input)
-
-
-def debug_print(t):
-    sys.stderr.write(t + "\n")
-
-
-def searchScene(name):
+def search_scene(name):
     s = OtterScraper()
     ret = s.find_video(title=name)
     return ret
 
 
 # read the input
-i = readJSONInput()
+i = read_json_args()
 logger.debug(f'Input is: {i}')
 try:
     ret = {}
@@ -138,7 +137,7 @@ try:
         ret['title'] = m.group('title')
         logger.debug(f'title updated to {title}')
 
-    result = searchScene(title)
+    result = search_scene(title)
     if result:
         logger.debug(f'Scene found: {result}')
     else:

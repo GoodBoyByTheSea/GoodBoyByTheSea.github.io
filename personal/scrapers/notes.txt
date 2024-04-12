@@ -1,0 +1,8 @@
+
+Scraper Docs:
+    https://docs.stashapp.cc/in-app-manual/scraping/scraperdevelopment/
+
+Example:
+    https://github.com/stashapp/CommunityScrapers/blob/master/scrapers/Algolia/Algolia.py
+
+

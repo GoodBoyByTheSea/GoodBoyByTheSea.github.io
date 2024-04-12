@@ -48,6 +48,13 @@ class Scraper:
         return img
 
     @staticmethod
+    def get_twitter(soup):
+        try:
+            return soup.find(class_='sociallinks-href')['href']
+        except:
+            pass
+
+    @staticmethod
     def get_details(soup):
         details_dict = {}
         details = soup.find(id='content-description').find_all('li')
@@ -93,6 +100,9 @@ class Scraper:
         image = self.get_image(profile)
         details = self.get_details(soup)
         ret = {'name': name, 'image': image, 'gender': 'male'}
+        twitter = self.get_twitter(soup)
+        if twitter is not None:
+            ret['twitter'] = twitter
         ret.update(details)
         if 'height' in ret:
             ret['height'] = self.fix_height(ret['height'])

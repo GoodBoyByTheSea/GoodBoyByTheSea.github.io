@@ -485,7 +485,7 @@ file_name_replacements = {
     'Himeros.TV': ['Himeros TV', 'HimerosTV'],
     'Kink Men': ['KinkMen'],
     'TIM Suck': ['Tim Suck', 'TimSuck', 'TIMSuck'],
-    'TIM Fuck': ['Tim Fuck', 'TimFuck', 'TIMFuck'],
+    'TIM Fuck': ['Tim Fuck', 'TimFuck', 'TIMFuck', 'TIMFUCK'],
     'TIM Jack': ['Tim Jack', 'TimJack', 'TIMJack'],
 }
 

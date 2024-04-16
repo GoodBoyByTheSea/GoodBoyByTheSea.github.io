@@ -57,7 +57,13 @@ class Scraper:
     @staticmethod
     def get_details(soup):
         details_dict = {}
+        description = ''
         details = soup.find(id='content-description').find_all('li')
+        try:
+            description = soup.find_all(class_='field-name-body')[0].text
+        except:
+            pass
+
         for detail in details:
             details_dict[detail.contents[2].strip()] = detail.contents[1].text
         field_names = {'Eye color': 'eyecolor',
@@ -74,9 +80,17 @@ class Scraper:
             else:
                 details_field.append(f'{k}: {v}')
                 ret[k.lower()] = str(v)
+        if description:
+            details_field.append(description)
         if details_field:
             ret['details'] = '\n'.join(details_field)
+
         return ret
+
+    @staticmethod
+    def fix_weight(weight_lbs):
+        weight_kg = float(weight_lbs) * 0.45359237
+        return str(int(weight_kg))
 
     @staticmethod
     def fix_height(height_string):
@@ -92,6 +106,7 @@ class Scraper:
             height_cm = str(int(height_cm))
             return height_cm
 
+
     def scrape(self):
         soup = self.get_page()
         profile = soup.find("div", class_="model-profile")
@@ -105,6 +120,9 @@ class Scraper:
         ret.update(details)
         if 'height' in ret:
             ret['height'] = self.fix_height(ret['height'])
+        if 'weight' in ret:
+            ret['weight'] = self.fix_weight(ret['weight'])
+
         return ret
 
 
@@ -147,4 +165,4 @@ except Exception as e:
     debug_print(str(e))
 
 if __name__ == '__main__':
-    url = 'https://men.treasureislandmedia.com/men/7255'
+    url = 'https://men.treasureislandmedia.com/men/17368'

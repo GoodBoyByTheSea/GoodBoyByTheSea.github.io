@@ -296,6 +296,7 @@ def get_studio_from_image_id(image_id):
         else:
             print(f"No file_id in Stash found for {image_id}")
 
+
 def get_scene_id_from_hash(hash):
     with sqlite3.connect(STASH_DB) as conn:
         cur = conn.execute("SELECT file_id from files_fingerprints where fingerprint = ?", (hash,))
@@ -565,6 +566,7 @@ def update_all_scene_details(debug=True):
 
 if __name__ == '__main__':
     debug = False
+    # debug = True
 
     rec = reconcile_studios(path_complete)
     [logger.debug(f'{i},') for i in rec['Missing Studio']]

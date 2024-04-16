@@ -92,7 +92,6 @@ class Scraper:
             height_cm = str(int(height_cm))
             return height_cm
 
-
     def scrape(self):
         soup = self.get_page()
         profile = soup.find("div", class_="model-profile")
